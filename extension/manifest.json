@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Darker News",
+  "version": "0.1.0",
+  "description": "A dark theme for Hacker News in the Buffer colors, with better fonts and bigger text.",
+  "content_scripts": [
+    {
+      "matches": ["https://news.ycombinator.com/*"],
+      "css": ["styles/darker-news.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*.woff2"],
+      "matches": ["https://news.ycombinator.com/*"]
+    }
+  ]
+}

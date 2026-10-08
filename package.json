@@ -1,0 +1,15 @@
+{
+  "name": "darker-news",
+  "version": "0.1.0",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test"
+  },
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@types/node": "^22.20.5",
+    "typescript": "~5.9.0"
+  }
+}

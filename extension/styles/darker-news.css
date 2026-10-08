@@ -1,0 +1,92 @@
+/*
+ * Darker News: a dark theme for Hacker News in the Buffer colors.
+ * Every rule starts with `html`, so it wins over the HN rule with the same selector.
+ */
+
+/* Fonts (OFL). The "DN" names keep an installed copy of the same font out of the way. */
+@font-face {
+  font-family: "DN Inter";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/inter-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DN Inter";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/inter-latin-ext.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "DN Figtree";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/figtree-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "DN Figtree";
+  src: url("chrome-extension://__MSG_@@extension_id__/fonts/figtree-latin-ext.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Tokens. The color values come from the buffer.com stylesheets. */
+:root {
+  --dn-bg: hsl(176 20% 16%);
+  --dn-surface: hsl(177 22% 20%);
+  --dn-sunken: hsl(176 22% 12%);
+  --dn-border: hsl(176 14% 28%);
+  --dn-accent: hsl(105 68% 77%);
+  --dn-text: hsl(60 20% 96%);
+  --dn-muted: hsl(53 8% 78%);
+  --dn-faint: hsl(60 4% 62%);
+
+  --dn-font-body: "DN Inter", system-ui, sans-serif;
+  --dn-font-head: "DN Figtree", "DN Inter", system-ui, sans-serif;
+  --dn-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: dark;
+}
+
+/* Base */
+html,
+html body {
+  background: var(--dn-bg);
+}
+html body {
+  margin: 0;
+  padding: 16px;
+}
+html body,
+html td {
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+  color: var(--dn-muted);
+}
+html a:link {
+  color: var(--dn-text);
+}
+html a:visited {
+  color: var(--dn-faint);
+}
+html a:hover {
+  color: var(--dn-accent);
+}
+html ::selection {
+  background: var(--dn-accent);
+  color: var(--dn-bg);
+}
+
+/* HN sets a light background on the main table with the bgcolor attribute. */
+html #hnmain {
+  background: transparent;
+}
