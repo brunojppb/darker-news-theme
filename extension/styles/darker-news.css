@@ -1,5 +1,5 @@
 /*
- * Darker News: a dark theme for Hacker News in the Buffer colors.
+ * Darker News: a dark theme for Hacker News in the Buffer app colors.
  * Every rule starts with `html`, so it wins over the HN rule with the same selector.
  */
 
@@ -39,16 +39,16 @@
     U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* Tokens. The color values come from the buffer.com stylesheets. */
+/* Tokens. The color values come from the Buffer app dark mode. */
 :root {
-  --dn-bg: hsl(176 20% 16%);
-  --dn-surface: hsl(177 22% 20%);
-  --dn-sunken: hsl(176 22% 12%);
-  --dn-border: hsl(176 14% 28%);
-  --dn-accent: hsl(105 68% 77%);
-  --dn-text: hsl(60 20% 96%);
-  --dn-muted: hsl(53 8% 78%);
-  --dn-faint: hsl(60 4% 62%);
+  --dn-bg: #171717;
+  --dn-surface: #1e1f1f;
+  --dn-sunken: #131313;
+  --dn-border: #2b2c2c;
+  --dn-accent: #97c47d;
+  --dn-text: #ededed;
+  --dn-muted: #aaacac;
+  --dn-faint: #828484;
 
   --dn-font-body: "DN Inter", system-ui, sans-serif;
   --dn-font-head: "DN Figtree", "DN Inter", system-ui, sans-serif;
