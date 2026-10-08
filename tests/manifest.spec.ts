@@ -29,3 +29,15 @@ test('the manifest asks for no permissions and runs no scripts', async () => {
     },
   ]);
 });
+
+test('each manifest icon is a PNG of the declared size', async () => {
+  const manifest = await readManifest();
+  expect(Object.keys(manifest.icons ?? {}).sort()).toEqual(['128', '16', '48']);
+  for (const [size, file] of Object.entries(manifest.icons ?? {})) {
+    const png = await readFile(path.join(extensionDir, file));
+    expect(png.subarray(1, 4).toString('ascii')).toBe('PNG');
+    // The PNG header stores the width at byte 16 and the height at byte 20.
+    expect(png.readUInt32BE(16)).toBe(Number(size));
+    expect(png.readUInt32BE(20)).toBe(Number(size));
+  }
+});

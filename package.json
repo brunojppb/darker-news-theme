@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "playwright test"
+    "test": "playwright test",
+    "icons": "node scripts/make-icons.ts",
+    "screenshots": "DN_SCREENSHOTS=1 playwright test screenshots"
   },
   "private": true,
   "type": "module",

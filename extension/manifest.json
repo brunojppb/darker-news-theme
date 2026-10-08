@@ -3,6 +3,11 @@
   "name": "Darker News",
   "version": "0.1.0",
   "description": "A dark theme for Hacker News in the Buffer colors, with better fonts and bigger text.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "content_scripts": [
     {
       "matches": ["https://news.ycombinator.com/*"],
