@@ -58,3 +58,17 @@ test('the front page does not scroll sideways on a phone', async ({ openHN }) =>
   const page = await openHN('/news', { width: 390, height: 844 });
   expect(await scrollsSideways(page)).toBe(false);
 });
+
+test('a custom HN header color still gives a dark header', async ({ openHN }) => {
+  const page = await openHN('/news');
+  // HN writes a user's `topcolor` profile setting into the bgcolor attribute.
+  await page
+    .locator('#hnmain td[bgcolor="#ff6600"]')
+    .evaluateAll((cells) => cells.forEach((td) => td.setAttribute('bgcolor', '#ffffaa')));
+  expect(await css(page, '#hnmain > tbody > tr:nth-child(2) > td', 'background-color')).toBe(
+    await tokenColor(page, '--dn-surface'),
+  );
+  expect(await css(page, '#hnmain td[bgcolor]:empty', 'background-color')).toBe(
+    await tokenColor(page, '--dn-border'),
+  );
+});

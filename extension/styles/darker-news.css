@@ -103,21 +103,20 @@ html #hnmain td[bgcolor="#000000"] {
   background: transparent;
 }
 
-/* Header */
-html #hnmain td[bgcolor="#ff6600"] {
+/* Header. Select by position: the bgcolor value changes with the user's `topcolor` setting. */
+html #hnmain > tbody > tr:nth-child(2) > td {
   background: var(--dn-surface);
   border-radius: 12px;
 }
-/* The footer uses an empty orange cell as a divider line. */
-html #hnmain td[bgcolor="#ff6600"]:empty {
+/* The footer uses an empty cell in the header color as a divider line. */
+html #hnmain td[bgcolor]:empty {
   background: var(--dn-border);
-  border-radius: 0;
 }
 /* HN sets the header padding and the logo border inline. */
-html #hnmain td[bgcolor="#ff6600"] > table {
+html #hnmain > tbody > tr:nth-child(2) > td > table {
   padding: 10px 14px !important;
 }
-html #hnmain td[bgcolor="#ff6600"] img {
+html #hnmain > tbody > tr:nth-child(2) > td img {
   border: 1px solid var(--dn-accent) !important;
   border-radius: 4px;
 }
