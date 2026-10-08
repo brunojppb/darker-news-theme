@@ -323,3 +323,60 @@ html code {
   font-size: 14px;
   line-height: 1.5;
 }
+
+/* Forms */
+html input[type="text"],
+html input[type="password"],
+html input[type="url"],
+html input[type="number"],
+html textarea {
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid var(--dn-border);
+  border-radius: 8px;
+  background: var(--dn-surface);
+  color: var(--dn-text);
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+}
+html textarea {
+  width: 100%;
+  max-width: 640px;
+  line-height: 1.5;
+}
+html input:focus,
+html textarea:focus {
+  outline: 2px solid var(--dn-accent);
+  outline-offset: 1px;
+}
+html input[type="submit"] {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--dn-accent);
+  color: var(--dn-bg);
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+html input[type="submit"]:hover {
+  filter: brightness(1.08);
+}
+/* HN sets this color with an attribute on the "help" link next to the reply box. */
+html font[color="#AFAFAF"] {
+  color: var(--dn-faint);
+}
+
+/* Footer */
+html .yclinks {
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .yclinks a:link,
+html .yclinks a:visited {
+  color: var(--dn-muted);
+}
+html .yclinks a:hover {
+  color: var(--dn-accent);
+}
