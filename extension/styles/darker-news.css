@@ -62,7 +62,9 @@ html,
 html body {
   background: var(--dn-bg);
 }
+/* HN's phone rule sets the body width to 100%, which our padding would push past the window. */
 html body {
+  width: auto;
   margin: 0;
   padding: 16px;
 }
@@ -89,4 +91,130 @@ html ::selection {
 /* HN sets a light background on the main table with the bgcolor attribute. */
 html #hnmain {
   background: transparent;
+}
+
+/* Page frame */
+html #hnmain {
+  width: min(820px, 100%);
+  min-width: 0;
+  margin: 0 auto;
+}
+html #hnmain td[bgcolor="#000000"] {
+  background: transparent;
+}
+
+/* Header */
+html #hnmain td[bgcolor="#ff6600"] {
+  background: var(--dn-surface);
+  border-radius: 12px;
+}
+/* The footer uses an empty orange cell as a divider line. */
+html #hnmain td[bgcolor="#ff6600"]:empty {
+  background: var(--dn-border);
+  border-radius: 0;
+}
+/* HN sets the header padding and the logo border inline. */
+html #hnmain td[bgcolor="#ff6600"] > table {
+  padding: 10px 14px !important;
+}
+html #hnmain td[bgcolor="#ff6600"] img {
+  border: 1px solid var(--dn-accent) !important;
+  border-radius: 4px;
+}
+html span.pagetop {
+  font-family: var(--dn-font-head);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--dn-faint);
+}
+html .pagetop a:link,
+html .pagetop a:visited {
+  color: var(--dn-muted);
+}
+html .pagetop a:hover {
+  color: var(--dn-accent);
+}
+html .hnname {
+  margin-right: 14px;
+}
+html .hnname a:link,
+html .hnname a:visited {
+  color: var(--dn-text);
+  font-size: 17px;
+  font-weight: 700;
+}
+html .topsel a:link,
+html .topsel a:visited {
+  color: var(--dn-accent);
+}
+
+/* Story list */
+html tr.athing.submission > td {
+  padding-top: 10px;
+}
+/* HN sets the spacer height inline. */
+html tr.spacer {
+  height: 8px !important;
+}
+html td.title {
+  font-family: var(--dn-font-head);
+  font-size: 17px;
+  line-height: 1.35;
+}
+html .rank {
+  color: var(--dn-faint);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+html .titleline > a:link {
+  color: var(--dn-text);
+  font-weight: 600;
+}
+html .titleline > a:visited {
+  color: var(--dn-faint);
+}
+html .titleline > a:hover {
+  color: var(--dn-accent);
+}
+html .titleline .sitebit {
+  font-family: var(--dn-font-body);
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .titleline .sitebit a:link,
+html .titleline .sitebit a:visited {
+  color: var(--dn-faint);
+}
+html td.subtext {
+  padding-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--dn-muted);
+}
+html .subtext a:link,
+html .subtext a:visited {
+  color: var(--dn-muted);
+}
+html .subtext a:hover {
+  color: var(--dn-accent);
+  text-decoration: none;
+}
+html a.morelink:link,
+html a.morelink:visited {
+  color: var(--dn-accent);
+  font-weight: 600;
+}
+
+/* Vote arrows: a CSS triangle replaces the HN image. */
+html .votearrow {
+  width: 0;
+  height: 0;
+  margin: 6px 6px 4px;
+  background: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid var(--dn-muted);
+}
+html .votelinks a:hover .votearrow {
+  border-bottom-color: var(--dn-accent);
 }
