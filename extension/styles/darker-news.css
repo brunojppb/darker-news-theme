@@ -218,3 +218,108 @@ html .votearrow {
 html .votelinks a:hover .votearrow {
   border-bottom-color: var(--dn-accent);
 }
+
+/* Comments */
+html .comment,
+html .toptext {
+  font-family: var(--dn-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+html .toptext,
+html .c00 {
+  color: var(--dn-text);
+}
+/* Faded comments keep the HN order: each step mixes more page background into the text. */
+html .c5a { color: color-mix(in srgb, var(--dn-text) 63%, var(--dn-bg)); }
+html .c73 { color: color-mix(in srgb, var(--dn-text) 53%, var(--dn-bg)); }
+html .c82 { color: color-mix(in srgb, var(--dn-text) 47%, var(--dn-bg)); }
+html .c88 { color: color-mix(in srgb, var(--dn-text) 45%, var(--dn-bg)); }
+html .c9c { color: color-mix(in srgb, var(--dn-text) 37%, var(--dn-bg)); }
+html .cae { color: color-mix(in srgb, var(--dn-text) 29%, var(--dn-bg)); }
+html .cbe { color: color-mix(in srgb, var(--dn-text) 23%, var(--dn-bg)); }
+html .cce { color: color-mix(in srgb, var(--dn-text) 16%, var(--dn-bg)); }
+html .cdd { color: color-mix(in srgb, var(--dn-text) 10%, var(--dn-bg)); }
+/* Links take the comment color, so they fade with it. */
+html .commtext a:link,
+html .commtext a:visited,
+html .toptext a:link,
+html .toptext a:visited {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--dn-accent);
+  text-underline-offset: 2px;
+}
+html .commtext a:hover,
+html .toptext a:hover {
+  color: var(--dn-accent);
+}
+
+/* The left border shows the nesting level. The HN spacer image width still sets the indent. */
+html table.comment-tree td.default {
+  padding: 6px 0 14px 14px;
+  border-left: 2px solid var(--dn-border);
+}
+html table.comment-tree tr.comtr:hover td.default {
+  border-left-color: var(--dn-accent);
+}
+
+html .comhead {
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .comhead a:link,
+html .comhead a:visited {
+  color: var(--dn-muted);
+}
+html .comhead a.hnuser:link,
+html .comhead a.hnuser:visited {
+  color: var(--dn-text);
+  font-weight: 600;
+}
+html .comhead a:hover {
+  color: var(--dn-accent);
+  text-decoration: none;
+}
+/* A bigger target for the collapse toggle. */
+html .comhead a.togg {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border: 1px solid var(--dn-border);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+html .comhead a.togg:hover {
+  border-color: var(--dn-accent);
+}
+
+html .reply font {
+  font-size: 13px;
+}
+html .reply u {
+  text-decoration: none;
+}
+html .reply a:link,
+html .reply a:visited {
+  color: var(--dn-muted);
+  text-decoration: none;
+}
+html .reply a:hover {
+  color: var(--dn-accent);
+}
+
+/* Code */
+html pre {
+  padding: 10px 12px;
+  border: 1px solid var(--dn-border);
+  border-radius: 8px;
+  background: var(--dn-sunken);
+}
+html pre,
+html code {
+  font-family: var(--dn-font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+}
