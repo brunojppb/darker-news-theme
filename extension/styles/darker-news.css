@@ -99,12 +99,9 @@ html #hnmain {
   min-width: 0;
   margin: 0 auto;
 }
-html #hnmain td[bgcolor="#000000"] {
-  background: transparent;
-}
 
-/* Header. Select by position: the bgcolor value changes with the user's `topcolor` setting. */
-html #hnmain > tbody > tr:nth-child(2) > td {
+/* Header. Select by content: the bgcolor value changes with the user's `topcolor` setting, and the row position changes when HN edits its markup. */
+html #hnmain > tbody > tr:has(span.pagetop) > td {
   background: var(--dn-surface);
   border-radius: 12px;
 }
@@ -113,10 +110,10 @@ html #hnmain td[bgcolor]:empty {
   background: var(--dn-border);
 }
 /* HN sets the header padding and the logo border inline. */
-html #hnmain > tbody > tr:nth-child(2) > td > table {
+html #hnmain > tbody > tr:has(span.pagetop) > td > table {
   padding: 10px 14px !important;
 }
-html #hnmain > tbody > tr:nth-child(2) > td img {
+html #hnmain > tbody > tr:has(span.pagetop) > td img {
   border: 1px solid var(--dn-accent) !important;
   border-radius: 4px;
 }
