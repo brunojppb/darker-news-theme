@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Dark theme for Hackernews",
+  "short_name": "darker-news",
+  "version": "0.1.0",
+  "description": "A dark theme for Hacker News with better fonts and bigger text.",
+  "homepage_url": "https://github.com/brunojppb/darker-news-theme",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "minimum_chrome_version": "111",
+  "content_scripts": [
+    {
+      "matches": ["https://news.ycombinator.com/*"],
+      "css": ["darker-news.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*.woff2"],
+      "matches": ["https://news.ycombinator.com/*"]
+    }
+  ]
+}

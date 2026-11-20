@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions: {}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # `changeset git-tag` checks local tags only, so it needs every existing tag.
+          fetch-depth: 0
+          persist-credentials: false
+      # Installs the Node and pnpm versions that mise.toml pins.
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
+        with:
+          version: 2026.11.10
+      - run: pnpm install --frozen-lockfile
+      - id: changesets
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
+        with:
+          version-script: pnpm version-packages
+          publish-script: pnpm release
+          commit-message: 'chore: version packages'
+          pr-title: 'chore: version packages'
+      - name: Attach the extension zip to the release
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISHED: ${{ steps.changesets.outputs.published-packages }}
+        run: |
+          version=$(jq -r '.[0].version' <<<"$PUBLISHED")
+          pnpm build
+          # The script prints only the zip path. pnpm would print the command too.
+          zip_file=$(node scripts/package.ts)
+          [[ "$zip_file" == */darker-news-v$version.zip ]] || { echo "built $zip_file, expected v$version"; exit 1; }
+          gh release upload "v$version" "$zip_file" --clobber
