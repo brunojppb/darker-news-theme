@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Dark theme for Hackernews",
   "short_name": "darker-news",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A dark theme for Hacker News with better fonts and bigger text.",
   "homepage_url": "https://github.com/brunojppb/darker-news-theme",
   "icons": {
