@@ -1,0 +1,398 @@
+/*
+ * Darker News: a dark theme for Hacker News in the Buffer app colors.
+ * Every rule starts with `html`, so it wins over the HN rule with the same selector.
+ */
+
+/* Fonts (OFL). The "DN" names keep an installed copy of the same font out of the way. */
+@font-face {
+  font-family: 'DN Inter';
+  src: url('./fonts/inter-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DN Inter';
+  src: url('./fonts/inter-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'DN Figtree';
+  src: url('./fonts/figtree-latin.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DN Figtree';
+  src: url('./fonts/figtree-latin-ext.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Tokens. The color values come from the Buffer app dark mode. */
+:root {
+  --dn-bg: #171717;
+  --dn-surface: #1e1f1f;
+  --dn-sunken: #131313;
+  --dn-border: #2b2c2c;
+  --dn-accent: #97c47d;
+  --dn-text: #ededed;
+  --dn-muted: #aaacac;
+  --dn-faint: #828484;
+
+  --dn-font-body: 'DN Inter', system-ui, sans-serif;
+  --dn-font-head: 'DN Figtree', 'DN Inter', system-ui, sans-serif;
+  --dn-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: dark;
+}
+
+/* Base */
+html,
+html body {
+  background: var(--dn-bg);
+}
+/* HN's phone rule sets the body width to 100%, which our padding would push past the window. */
+html body {
+  width: auto;
+  margin: 0;
+  padding: 16px;
+}
+html body,
+html td {
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+  color: var(--dn-muted);
+}
+html a:link {
+  color: var(--dn-text);
+}
+html a:visited {
+  color: var(--dn-faint);
+}
+html a:hover {
+  color: var(--dn-accent);
+}
+html ::selection {
+  background: var(--dn-accent);
+  color: var(--dn-bg);
+}
+
+/* HN sets a light background on the main table with the bgcolor attribute. */
+html #hnmain {
+  background: transparent;
+}
+
+/* Page frame */
+html #hnmain {
+  width: min(820px, 100%);
+  min-width: 0;
+  margin: 0 auto;
+}
+
+/* Header. Select by content: the bgcolor value changes with the user's `topcolor` setting, and the row position changes when HN edits its markup. */
+html #hnmain > tbody > tr:has(span.pagetop) > td {
+  background: var(--dn-surface);
+  border-radius: 12px;
+}
+/* The footer uses an empty cell in the header color as a divider line. */
+html #hnmain td[bgcolor]:empty {
+  background: var(--dn-border);
+}
+/* HN sets the header padding and the logo border inline. */
+html #hnmain > tbody > tr:has(span.pagetop) > td > table {
+  padding: 10px 14px !important;
+}
+html #hnmain > tbody > tr:has(span.pagetop) > td img {
+  border: 1px solid var(--dn-accent) !important;
+  border-radius: 4px;
+}
+html span.pagetop {
+  font-family: var(--dn-font-head);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--dn-faint);
+}
+html .pagetop a:link,
+html .pagetop a:visited {
+  color: var(--dn-muted);
+}
+html .pagetop a:hover {
+  color: var(--dn-accent);
+}
+html .hnname {
+  margin-right: 14px;
+}
+html .hnname a:link,
+html .hnname a:visited {
+  color: var(--dn-text);
+  font-size: 17px;
+  font-weight: 700;
+}
+html .topsel a:link,
+html .topsel a:visited {
+  color: var(--dn-accent);
+}
+
+/* Story list */
+html tr.athing.submission > td {
+  padding-top: 10px;
+}
+/* HN sets the spacer height inline. */
+html tr.spacer {
+  height: 8px !important;
+}
+html td.title {
+  font-family: var(--dn-font-head);
+  font-size: 17px;
+  line-height: 1.35;
+}
+html .rank {
+  color: var(--dn-faint);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+html .titleline > a:link {
+  color: var(--dn-text);
+  font-weight: 600;
+}
+html .titleline > a:visited {
+  color: var(--dn-faint);
+}
+html .titleline > a:hover {
+  color: var(--dn-accent);
+}
+html .titleline .sitebit {
+  font-family: var(--dn-font-body);
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .titleline .sitebit a:link,
+html .titleline .sitebit a:visited {
+  color: var(--dn-faint);
+}
+html td.subtext {
+  padding-top: 2px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--dn-muted);
+}
+html .subtext a:link,
+html .subtext a:visited {
+  color: var(--dn-muted);
+}
+html .subtext a:hover {
+  color: var(--dn-accent);
+  text-decoration: none;
+}
+html a.morelink:link,
+html a.morelink:visited {
+  color: var(--dn-accent);
+  font-weight: 600;
+}
+
+/* Vote arrows: a CSS triangle replaces the HN image. */
+html .votearrow {
+  width: 0;
+  height: 0;
+  margin: 6px 6px 4px;
+  background: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid var(--dn-muted);
+}
+html .votelinks a:hover .votearrow {
+  border-bottom-color: var(--dn-accent);
+}
+
+/* Comments */
+html .comment,
+html .toptext {
+  font-family: var(--dn-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+html .toptext,
+html .c00 {
+  color: var(--dn-text);
+}
+/* Faded comments keep the HN order: each step mixes more page background into the text. */
+html .c5a {
+  color: color-mix(in srgb, var(--dn-text) 63%, var(--dn-bg));
+}
+html .c73 {
+  color: color-mix(in srgb, var(--dn-text) 53%, var(--dn-bg));
+}
+html .c82 {
+  color: color-mix(in srgb, var(--dn-text) 47%, var(--dn-bg));
+}
+html .c88 {
+  color: color-mix(in srgb, var(--dn-text) 45%, var(--dn-bg));
+}
+html .c9c {
+  color: color-mix(in srgb, var(--dn-text) 37%, var(--dn-bg));
+}
+html .cae {
+  color: color-mix(in srgb, var(--dn-text) 29%, var(--dn-bg));
+}
+html .cbe {
+  color: color-mix(in srgb, var(--dn-text) 23%, var(--dn-bg));
+}
+html .cce {
+  color: color-mix(in srgb, var(--dn-text) 16%, var(--dn-bg));
+}
+html .cdd {
+  color: color-mix(in srgb, var(--dn-text) 10%, var(--dn-bg));
+}
+/* Links take the comment color, so they fade with it. */
+html .commtext a:link,
+html .commtext a:visited,
+html .toptext a:link,
+html .toptext a:visited {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--dn-accent);
+  text-underline-offset: 2px;
+}
+html .commtext a:hover,
+html .toptext a:hover {
+  color: var(--dn-accent);
+}
+
+/* The left border shows the nesting level. The HN spacer image width still sets the indent. */
+html table.comment-tree td.default {
+  padding: 6px 0 14px 14px;
+  border-left: 2px solid var(--dn-border);
+}
+html table.comment-tree tr.comtr:hover td.default {
+  border-left-color: var(--dn-accent);
+}
+
+html .comhead {
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .comhead a:link,
+html .comhead a:visited {
+  color: var(--dn-muted);
+}
+html .comhead a.hnuser:link,
+html .comhead a.hnuser:visited {
+  color: var(--dn-text);
+  font-weight: 600;
+}
+html .comhead a:hover {
+  color: var(--dn-accent);
+  text-decoration: none;
+}
+/* A bigger target for the collapse toggle. */
+html .comhead a.togg {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border: 1px solid var(--dn-border);
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+html .comhead a.togg:hover {
+  border-color: var(--dn-accent);
+}
+
+html .reply font {
+  font-size: 13px;
+}
+html .reply u {
+  text-decoration: none;
+}
+html .reply a:link,
+html .reply a:visited {
+  color: var(--dn-muted);
+  text-decoration: none;
+}
+html .reply a:hover {
+  color: var(--dn-accent);
+}
+
+/* Code */
+html pre {
+  padding: 10px 12px;
+  border: 1px solid var(--dn-border);
+  border-radius: 8px;
+  background: var(--dn-sunken);
+}
+html pre,
+html code {
+  font-family: var(--dn-font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Forms */
+html input[type='text'],
+html input[type='password'],
+html input[type='url'],
+html input[type='number'],
+html textarea {
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid var(--dn-border);
+  border-radius: 8px;
+  background: var(--dn-surface);
+  color: var(--dn-text);
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+}
+html textarea {
+  width: 100%;
+  max-width: 640px;
+  line-height: 1.5;
+}
+html input:focus,
+html textarea:focus {
+  outline: 2px solid var(--dn-accent);
+  outline-offset: 1px;
+}
+html input[type='submit'] {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--dn-accent);
+  color: var(--dn-bg);
+  font-family: var(--dn-font-body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+html input[type='submit']:hover {
+  filter: brightness(1.08);
+}
+/* HN sets this color with an attribute on the "help" link next to the reply box. */
+html font[color='#AFAFAF'] {
+  color: var(--dn-faint);
+}
+
+/* Footer */
+html .yclinks {
+  font-size: 13px;
+  color: var(--dn-faint);
+}
+html .yclinks a:link,
+html .yclinks a:visited {
+  color: var(--dn-muted);
+}
+html .yclinks a:hover {
+  color: var(--dn-accent);
+}

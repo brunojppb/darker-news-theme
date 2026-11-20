@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Installs the Node and pnpm versions that mise.toml pins.
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
+        with:
+          version: 2026.11.10
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Format, lint, and type check
+        run: pnpm check
+
+      # Chrome reads the version from the manifest, so it must match package.json.
+      - name: Manifest version matches package.json
+        run: node scripts/sync-manifest-version.ts && git diff --exit-code public/manifest.json
+
+      # The same zip goes to the Chrome Web Store, so its contents are checked here.
+      - name: Build and package the extension
+        run: pnpm package
+
+      - name: Install Chromium for Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: End-to-end tests with the built extension
+        run: pnpm e2e
+
+      - name: Upload Playwright traces
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: playwright-test-results
+          path: test-results/
+          retention-days: 7
