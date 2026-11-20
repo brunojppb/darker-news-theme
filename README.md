@@ -4,8 +4,6 @@
 
 A Chrome extension. It restyles [Hacker News](https://news.ycombinator.com) for easier reading. It uses the dark-mode colors of the Buffer app, the Inter and Figtree fonts, and bigger text.
 
-![The Hacker News front page with the theme](store/screenshots/1-front-page.png)
-
 ## What it changes
 
 - **Colors:** a near-black background, light gray text, and a green accent for links, buttons, and focus outlines.
