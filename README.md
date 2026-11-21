@@ -17,7 +17,9 @@ The extension is CSS only. It runs no scripts, collects no data, and asks for no
 
 ## Install
 
-The extension is not in the Chrome Web Store yet. Each [GitHub release](https://github.com/brunojppb/darker-news-theme/releases) has the extension as a zip file. To build it from this repository, see the next section.
+Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/dark-theme-for-hackernews/kffmcdlcefbapiokmjokpgjfaclfkbbi).
+
+Each [GitHub release](https://github.com/brunojppb/darker-news-theme/releases) has the extension as a zip file. To build it from this repository, see the next section.
 
 Chrome 111 or newer is needed.
 
